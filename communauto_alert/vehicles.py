@@ -65,7 +65,7 @@ class Vehicles:
         
         self.vehicles = vehicles
     
-    def compute_distances(self, latitude: float, longitude: float) -> list[float]:
+    def get_distances(self, latitude: float, longitude: float) -> list[float]:
         """ return a list of the distances, in meters, of all vehicles from the provided coords  """
         distances = []
         for vehicle in self.vehicles:
@@ -73,3 +73,10 @@ class Vehicles:
             vehicle_location = (vehicle["Latitude"], vehicle["Longitude"])
             distances.append(geodesic(user_location, vehicle_location).meters)
         return distances
+    
+    def get_closest(self, latitude: float, longitude: float) -> Vehicle | None:
+        """ return the vehicle located closest to the provided coords """
+        distances = self.get_distances(latitude, longitude)
+        if distances:
+            return self.vehicles[distances.index(min(distances))]
+        return None
