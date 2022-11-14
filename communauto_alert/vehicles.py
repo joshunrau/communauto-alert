@@ -7,7 +7,7 @@ import requests
 
 from geopy.distance import geodesic
 
-from typing import Literal, TypedDict
+from typing import Literal, Tuple, TypedDict
 
 from .exceptions import InvalidResponseBodyFormatError
 
@@ -74,9 +74,9 @@ class Vehicles:
             distances.append(geodesic(user_location, vehicle_location).meters)
         return distances
     
-    def get_closest(self, latitude: float, longitude: float) -> Vehicle | None:
+    def get_closest(self, latitude: float, longitude: float) -> Tuple[Vehicle, float] | None:
         """ return the vehicle located closest to the provided coords """
         distances = self.get_distances(latitude, longitude)
         if distances:
-            return self.vehicles[distances.index(min(distances))]
+            return self.vehicles[distances.index(min(distances))], min(distances)
         return None
