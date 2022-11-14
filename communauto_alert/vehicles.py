@@ -5,6 +5,8 @@ import sys
 
 import requests
 
+from geopy.distance import geodesic
+
 from typing import Literal, TypedDict
 
 from .exceptions import InvalidResponseBodyFormatError
@@ -62,3 +64,12 @@ class Vehicles:
                 raise InvalidResponseBodyFormatError from err
         
         self.vehicles = vehicles
+    
+    def compute_distances(self, latitude: float, longitude: float) -> list[float]:
+        """ return a list of the distances, in meters, of all vehicles from the provided coords  """
+        distances = []
+        for vehicle in self.vehicles:
+            user_location = (latitude, longitude)
+            vehicle_location = (vehicle["Latitude"], vehicle["Longitude"])
+            distances.append(geodesic(user_location, vehicle_location).meters)
+        return distances
