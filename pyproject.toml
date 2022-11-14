@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "communauto_alert"
+version = "0.0.1"
+readme = "README.md"
+license = {text = "MIT License"}
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "requests >= 2.28.1"
+]
+
+[project.optional-dependencies]
+development = [
+  "mypy >= 0.990",
+  "types-requests >= 2.28.11.4"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/joshunrau/CommunautoAlert"
+"Bug Tracker" = "https://github.com/joshunrau/CommunautoAlert/issues"
+
+[project.scripts]
+communauto-alert = "communauto_alert.main:main"
+
+[tool.mypy]
+python_version = "3.8"
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+
+[tool.setuptools.packages.find]
+include = ["communauto_alert"]
