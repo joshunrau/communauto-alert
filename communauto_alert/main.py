@@ -6,14 +6,17 @@ from importlib.metadata import version
 from .bell import Bell
 from .vehicles import Vehicles
 
-def main() -> None:
+def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(prog='communauto-alert', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("-v", "--version", action="version", version=f"%(prog)s {version('communauto-alert')}")
     parser.add_argument('latitude', help='your latitude', type=float)
     parser.add_argument('longitude', help='your longitude', type=float)
     parser.add_argument('--max_distance', help='max distance of vehicle in meters', default=500, metavar='', type=int)
-    args = parser.parse_args()
+    return parser.parse_args()
 
+def main() -> None:
+    args = parse_args()
+    
     bell = Bell()
     vehicles = Vehicles()
     while True:
