@@ -37,8 +37,11 @@ python_version = "3.8"
 disallow_untyped_defs = true
 disallow_incomplete_defs = true
 
+[tool.setuptools]
+include-package-data = true
+
 [tool.setuptools.package-data]
-"civetqc.resources" = ["*.wav"]
+"communauto_alert.resources" = ["*.wav"]
 
 [tool.setuptools.packages.find]
 include = ["communauto_alert", "communauto_alert.resources"]

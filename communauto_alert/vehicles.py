@@ -1,36 +1,31 @@
 from __future__ import annotations
 
 import copy
+import dataclasses
 import sys
+from typing import Literal
 
 import requests
-
 from geopy.distance import geodesic
-
-from typing import Literal, Tuple, TypedDict
 
 from .exceptions import InvalidResponseBodyFormatError
 
-class Vehicle(TypedDict):
-    BookingStatus: Literal[0, 1]
-    CarBrand: str
-    CarModel: str
-    CarNo: int
-    Latitude: float
-    Longitude: float
 
+@dataclasses.dataclass
+class Vehicle:
+    booking_status: Literal[0, 1]
+    car_brand: str
+    car_model: str
+    car_no: int
+    latitude: float
+    longitude: float
+
+    def distance(self, latitude: float, longitude: float) -> float:
+        return geodesic((latitude, longitude), (self.latitude, self.longitude)).meters
 
 class Vehicles:
     def __init__(self) -> None:
         self._vehicles: list[Vehicle] = []
-    
-    def __str__(self) -> str:
-        return '\n'.join([f"{key}: {value}" for key, value in self.info().items()])
-    
-    def info(self) -> dict:
-        return {
-            "Number of Vehicles": len(self.vehicles)
-        }
 
     @property
     def vehicles(self) -> list[Vehicle]:
@@ -55,12 +50,18 @@ class Vehicles:
         
         if not isinstance(vehicles, list):
             raise InvalidResponseBodyFormatError
-    
-        required_keys = ["BookingStatus", "CarBrand", "CarModel", "CarNo", "Latitude", "Longitude"]
+
         for i in range(len(vehicles)):
             try:
-                vehicles[i] = {key: value for key, value in vehicles[i].items() if key in required_keys}
-            except (AttributeError, KeyError) as err:
+                vehicles[i] = Vehicle(
+                    booking_status=vehicles[i]["BookingStatus"],
+                    car_brand=vehicles[i]["CarBrand"],
+                    car_model=vehicles[i]["CarModel"],
+                    car_no=vehicles[i]["CarNo"],
+                    latitude=vehicles[i]["Latitude"],
+                    longitude=vehicles[i]["Longitude"]
+                )
+            except KeyError as err:
                 raise InvalidResponseBodyFormatError from err
         
         self.vehicles = vehicles
@@ -69,14 +70,12 @@ class Vehicles:
         """ return a list of the distances, in meters, of all vehicles from the provided coords  """
         distances = []
         for vehicle in self.vehicles:
-            user_location = (latitude, longitude)
-            vehicle_location = (vehicle["Latitude"], vehicle["Longitude"])
-            distances.append(geodesic(user_location, vehicle_location).meters)
+            distances.append(vehicle.distance(latitude, longitude))
         return distances
     
-    def get_closest(self, latitude: float, longitude: float) -> Tuple[Vehicle, float] | None:
+    def get_closest(self, latitude: float, longitude: float) -> Vehicle | None:
         """ return the vehicle located closest to the provided coords """
         distances = self.get_distances(latitude, longitude)
         if distances:
-            return self.vehicles[distances.index(min(distances))], min(distances)
+            return self.vehicles[distances.index(min(distances))]
         return None

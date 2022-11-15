@@ -1,6 +1,6 @@
 import unittest
 
-from communauto_alert.vehicles import Vehicles
+from src.vehicles import Vehicles
 
 class TestVehicles(unittest.TestCase):
     def test_fetch(self) -> None:
