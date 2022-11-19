@@ -15,7 +15,8 @@ classifiers = [
 ]
 dependencies = [
     "geopy >= 2.3.0",
-    "requests >= 2.28.1"
+    "requests >= 2.28.1",
+    "simpleaudio >= 1.0.4"
 ]
 
 [project.optional-dependencies]
