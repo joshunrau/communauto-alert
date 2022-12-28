@@ -10,6 +10,21 @@ $ cd CommunautoAlert
 $ make
 ```
 
+## Recommended Setup
+
+I recommend storing the coordinates of interest in environment variables, for example:
+
+```
+$ export DOWNTOWN_MONTREAL_LATITUDE=45.5019
+$ export export DOWNTOWN_MONTREAL_LONGITUDE=-73.5674
+```
+
+You can set these in your `.bashrc` or `.zshrc` and use as needed:
+
+```
+$ communauto-alert $DOWNTOWN_MONTREAL_LATITUDE $DOWNTOWN_MONTREAL_LONGITUDE
+```
+
 ## Usage
 
 ```
