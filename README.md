@@ -37,7 +37,7 @@ positional arguments:
 options:
   -h, --help       show this help message and exit
   -v, --version    show program's version number and exit
-  --interval       interval between checks in seconds (default: 60)
+  --interval       interval between checks in seconds (default: 30)
   --max-distance   maximum distance of vehicle in meters (default: 500)
   --no-prius       ignore vehicles with the model "Prius C" (default: False)
 ```

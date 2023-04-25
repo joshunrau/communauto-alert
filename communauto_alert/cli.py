@@ -20,7 +20,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--interval",
         help="interval between checks in seconds",
-        default=60,
+        default=30,
         metavar="",
         type=int,
     )
