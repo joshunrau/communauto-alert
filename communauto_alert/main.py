@@ -14,7 +14,7 @@ def main() -> None:
     vehicles: list[Vehicle] = []
     while True:
         print(f"Checking for vehicles within radius of {args.max_distance} meters...")
-        vehicles = get_available_vehicles()
+        vehicles = get_available_vehicles(args.province)
         if args.no_prius:
             vehicles = list(filter(lambda v: v.car_model != "Prius C", vehicles))
         closest_vehicle = get_closest_vehicle(vehicles, args.latitude, args.longitude)

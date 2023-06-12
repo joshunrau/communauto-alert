@@ -6,9 +6,14 @@ from typing import get_type_hints
 
 from .vehicle import Vehicle
 
-API_URL = "https://www.reservauto.net/WCF/LSI/LSIBookingServiceV3.svc/GetAvailableVehicles?BranchID=1&LanguageID=1"
+API_URL = 'https://www.reservauto.net/WCF/LSI/LSIBookingServiceV3.svc/GetAvailableVehicles'
 VALID_FILTERS = list(get_type_hints(Vehicle).keys())
-
+BRANCH_IDS = {
+    "AL": 10,
+    "NS": 3,
+    "ON": 2,
+    "QC": 1
+}
 
 class InvalidResponseBodyFormatError(Exception):
     def __init__(self) -> None:
@@ -17,9 +22,19 @@ class InvalidResponseBodyFormatError(Exception):
         )
 
 
-def get_available_vehicles() -> list[Vehicle]:
+def get_endpoint(
+    branch: str
+) -> str:
+    """get the endpoint given the province name"""
+
+    return API_URL + '?BranchID=' + str(BRANCH_IDS[branch]) + '&LanguageID=1'
+
+
+def get_available_vehicles(
+    branch: str
+) -> list[Vehicle]:
     """get a list of all vehicles"""
-    response = requests.get(API_URL)
+    response = requests.get(get_endpoint(branch))
     if response.status_code != 200:
         raise RuntimeError(
             f"Failed to fetch vehicles from API, got status code {response.status_code}"

@@ -9,6 +9,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         prog="communauto-alert", formatter_class=argparse.ArgumentDefaultsHelpFormatter
     )
+
     parser.add_argument(
         "-v",
         "--version",
@@ -16,7 +17,9 @@ def parse_args() -> argparse.Namespace:
         version=f"%(prog)s {version('communauto-alert')}",
     )
     parser.add_argument("latitude", help="your latitude", type=float)
+
     parser.add_argument("longitude", help="your longitude", type=float)
+
     parser.add_argument(
         "--interval",
         help="interval between checks in seconds",
@@ -37,4 +40,13 @@ def parse_args() -> argparse.Namespace:
         help='ignore vehicles with the model "Prius C"',
         action="store_true",
     )
+
+    parser.add_argument(
+        "--province",
+        help='province (e.g.: AL, NS, ON, QC)',
+        default='QC',
+        metavar="",
+        type=str,
+    )
+
     return parser.parse_args()
