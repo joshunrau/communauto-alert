@@ -49,4 +49,12 @@ def parse_args() -> argparse.Namespace:
         type=str,
     )
 
+    parser.add_argument(
+        "--notify",
+        help='apprise compatible configuration file (https://github.com/caronc/apprise/wiki/config)',
+        default='',
+        metavar="",
+        type=str,
+    )
+
     return parser.parse_args()

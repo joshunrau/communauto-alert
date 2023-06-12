@@ -25,6 +25,11 @@ You can set these in your `.bashrc` or `.zshrc` and use as needed:
 $ communauto-alert $YOUR_LOCATION_LATITUDE $YOUR_LOCATION_LONGITUDE
 ```
 
+## Notifications
+By default, the script will try to send a desktop notification. A first notification is sent at the beginning as a test. A subsequent one, when a car matching the filters is idenfied.
+
+You can override the default behaviour specifying your own [notification provider(s)](https://github.com/caronc/apprise/wiki) creating an [apprise compatible configuration file](https://github.com/caronc/apprise/wiki/config) and using the ```--notify``` CLI option.
+
 ## Usage
 
 ```
@@ -40,5 +45,6 @@ options:
   --interval       interval between checks in seconds (default: 30)
   --max-distance   maximum distance of vehicle in meters (default: 500)
   --no-prius       ignore vehicles with the model "Prius C" (default: False)
+  --notify         apprise compatible configuration file (default: notifications are sent to dbus, macosx and windows providers)
   --province       province (e.g.: AL, NS, ON, QC) (default: QC)
 ```
