@@ -1,10 +1,12 @@
+from __future__ import annotations
+
 import os
 import apprise
 from pkg_resources import resource_filename
 
 
 class Notifications:
-    def __init__(self, extra_config_notifications) -> None:
+    def __init__(self, extra_config_notifications: str | None) -> None:
         asset = apprise.AppriseAsset()
         asset.app_id = 'CommunautoAlert'
         asset.app_desc = 'CommunautoAlert'
@@ -14,7 +16,7 @@ class Notifications:
 
         config = apprise.AppriseConfig()
         # if a configuration file is provided...
-        if extra_config_notifications != '':
+        if extra_config_notifications:
             # ...check if it exists...
             if os.path.isfile(extra_config_notifications):
                 # ..and add to apprise

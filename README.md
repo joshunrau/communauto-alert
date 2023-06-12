@@ -26,14 +26,15 @@ $ communauto-alert $YOUR_LOCATION_LATITUDE $YOUR_LOCATION_LONGITUDE
 ```
 
 ## Notifications
-By default, the script will try to send a desktop notification. A first notification is sent at the beginning as a test. A subsequent one, when a car matching the filters is idenfied.
 
-You can override the default behaviour specifying your own [notification provider(s)](https://github.com/caronc/apprise/wiki) creating an [apprise compatible configuration file](https://github.com/caronc/apprise/wiki/config) and using the ```--notify``` CLI option.
+By default, the script will try to send a desktop notification. A first notification is sent at the beginning as a test. A subsequent one is sent when a car matching the filters is identified.
+
+You can override the default behavior specifying your own [notification provider(s)](https://github.com/caronc/apprise/wiki) with an [apprise compatible configuration file](https://github.com/caronc/apprise/wiki/config) and using the ```--notify``` CLI option.
 
 ## Usage
 
 ```
-usage: communauto-alert [-h] [-v] [--interval] [--max-distance] [--no-prius] latitude longitude
+usage: communauto-alert [-h] [-v] [--interval] [--max-distance] [--no-prius] [--province] [--notify] latitude longitude
 
 positional arguments:
   latitude         your latitude
@@ -45,6 +46,6 @@ options:
   --interval       interval between checks in seconds (default: 30)
   --max-distance   maximum distance of vehicle in meters (default: 500)
   --no-prius       ignore vehicles with the model "Prius C" (default: False)
-  --notify         apprise compatible configuration file (default: notifications are sent to dbus, macosx and windows providers)
-  --province       province (e.g.: AL, NS, ON, QC) (default: QC)
+  --province       the province where the search will be conducted (AL, NS, ON, QC) (default: QC)
+  --notify         path to apprise compatible configuration file (https://github.com/caronc/apprise/wiki/config) (default: None)
 ```
