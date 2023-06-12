@@ -43,7 +43,8 @@ def parse_args() -> argparse.Namespace:
 
     parser.add_argument(
         "--province",
-        help='province (e.g.: AL, NS, ON, QC)',
+        help='the province where the search will be conducted (AL, NS, ON, QC)',
+        choices=['AL', 'NS', 'ON', "QC"],
         default='QC',
         metavar="",
         type=str,

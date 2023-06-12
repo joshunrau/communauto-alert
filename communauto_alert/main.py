@@ -14,7 +14,7 @@ def main() -> None:
     notifications = Notifications(args.notify)
     print('Sending a test notification to ensure your configuration is valid...')
     notifications.apobj.notify(
-        title = 'Looking for veichles in ' + args.province,
+        title = 'Looking for vehicles in ' + args.province,
         body  = 'Starting now...',
     )
     vehicles: list[Vehicle] = []
