@@ -10,6 +10,20 @@ $ cd CommunautoAlert
 $ make
 ```
 
+Please note, that for notifications to work on Mac or Windows, you may need to install additional packages. If you experience any errors with this, please refer to the [apprise wiki](https://github.com/caronc/apprise/wiki).
+
+### MacOS
+
+```bash
+brew install terminal-notifier
+```
+
+### Windows
+
+```bash
+pip install pywin32
+```
+
 ## Recommended Setup
 
 I recommend storing the coordinates of interest in environment variables, for example:
