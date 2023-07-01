@@ -8,8 +8,8 @@ from pkg_resources import resource_filename
 class Notifications:
     def __init__(self, extra_config_notifications: str | None) -> None:
         asset = apprise.AppriseAsset()
-        asset.app_id = 'CommunautoAlert'
-        asset.app_desc = 'CommunautoAlert'
+        asset.app_id = 'communauto-alert'
+        asset.app_desc = 'communauto-alert'
         asset.app_url = 'https://github.com/caronc/apprise'
 
         self.apobj = apprise.Apprise(asset=asset)

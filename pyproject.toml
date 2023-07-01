@@ -27,8 +27,8 @@ development = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/joshunrau/CommunautoAlert"
-"Bug Tracker" = "https://github.com/joshunrau/CommunautoAlert/issues"
+"Homepage" = "https://github.com/joshunrau/communauto-alert"
+"Bug Tracker" = "https://github.com/joshunrau/communauto-alert/issues"
 
 [project.scripts]
 communauto-alert = "communauto_alert.main:main"
