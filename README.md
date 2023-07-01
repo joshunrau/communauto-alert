@@ -1,4 +1,4 @@
-# communauto-alert
+# Communauto Alert
 
 This is a command line script that will alert you when a communauto vehicle is available within a reasonable distance from you. 
 
