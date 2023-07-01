@@ -1,12 +1,12 @@
-# CommunautoAlert
+# communauto-alert
 
 This is a command line script that will alert you when a communauto vehicle is available within a reasonable distance from you. 
 
 ## Install
 
 ```
-$ git clone https://github.com/joshunrau/CommunautoAlert
-$ cd CommunautoAlert
+$ git clone https://github.com/joshunrau/communauto-alert
+$ cd communauto-alert
 $ make
 ```
 
